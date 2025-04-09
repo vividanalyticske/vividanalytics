@@ -3,6 +3,7 @@ import { LogosSection } from '@/blocks/homepage/logos-section/schema'
 import { HeroAbout } from '@/blocks/homepage/home-about/schema'
 import { ServicesBlock } from '@/blocks/homepage/services/schema'
 import { WhyChooseUs } from '@/blocks/homepage/why-us/schema'
+import { CTA } from '@/blocks/homepage/cta/schema'
 
 import type { CollectionConfig } from 'payload'
 
@@ -28,7 +29,7 @@ export const Pages: CollectionConfig = {
       name: 'layout',
       label: 'Layout',
       type: 'blocks',
-      blocks: [Hero, LogosSection, HeroAbout, ServicesBlock, WhyChooseUs],
+      blocks: [Hero, LogosSection, HeroAbout, ServicesBlock, WhyChooseUs, CTA],
     },
   ],
 }

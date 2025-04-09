@@ -214,9 +214,19 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            experience: number;
+            clients: number;
+            why_us_photo: number | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'why-choose-us';
+          }
+        | {
+            title: string;
+            description: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta-section';
           }
       )[]
     | null;
@@ -401,6 +411,17 @@ export interface PagesSelect<T extends boolean = true> {
                     content?: T;
                     id?: T;
                   };
+              experience?: T;
+              clients?: T;
+              why_us_photo?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'cta-section'?:
+          | T
+          | {
+              title?: T;
+              description?: T;
               id?: T;
               blockName?: T;
             };

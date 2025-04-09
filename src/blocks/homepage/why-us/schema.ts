@@ -39,5 +39,14 @@ export const WhyChooseUs: Block = {
         },
       ],
     },
+    { name: 'experience', label: 'Years of Experience', type: 'number', required: true },
+    { name: 'clients', label: 'Number of Happy Clients', type: 'number', required: true },
+    {
+      name: 'why_us_photo',
+      label: 'Section Photo',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
   ],
 }

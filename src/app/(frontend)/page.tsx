@@ -4,6 +4,8 @@ import HeroBlock from '@/components/homepage/HeroBlock'
 import LogosSection from '@/components/homepage/LogosSection'
 import HeroAboutSection from '@/components/homepage/HeroAbout'
 import HomeServicesSection from '@/components/homepage/ServicesSection'
+import WhyBlock from '@/components/homepage/WhyBlock'
+import CTABlock from '@/components/homepage/CTABlock'
 
 import config from '@/payload.config'
 import './globals.css'
@@ -43,6 +45,10 @@ function renderBlock(block: any, index: number) {
       return <HeroAboutSection key={index} block={block} />
     case 'services-block':
       return <HomeServicesSection key={index} block={block} />
+    case 'why-choose-us':
+      return <WhyBlock key={index} block={block} />
+    case 'cta-section':
+      return <CTABlock key={index} block={block} />
     default:
       return null
   }
