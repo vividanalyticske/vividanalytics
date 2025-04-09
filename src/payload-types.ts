@@ -72,6 +72,7 @@ export interface Config {
     pages: Page;
     'our-solutions': OurSolution;
     'practice-areas': PracticeArea;
+    team: Team;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     'our-solutions': OurSolutionsSelect<false> | OurSolutionsSelect<true>;
     'practice-areas': PracticeAreasSelect<false> | PracticeAreasSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -269,6 +271,29 @@ export interface PracticeArea {
   createdAt: string;
 }
 /**
+ * Add Team Member
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: number;
+  name: string;
+  slug: string;
+  photo: number | Media;
+  role: string;
+  email: string;
+  phone: string;
+  linkedin?: string | null;
+  twitter?: string | null;
+  facebook?: string | null;
+  instagram?: string | null;
+  bio: string;
+  experience: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -294,6 +319,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'practice-areas';
         value: number | PracticeArea;
+      } | null)
+    | ({
+        relationTo: 'team';
+        value: number | Team;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -480,6 +509,26 @@ export interface PracticeAreasSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  photo?: T;
+  role?: T;
+  email?: T;
+  phone?: T;
+  linkedin?: T;
+  twitter?: T;
+  facebook?: T;
+  instagram?: T;
+  bio?: T;
+  experience?: T;
   updatedAt?: T;
   createdAt?: T;
 }
