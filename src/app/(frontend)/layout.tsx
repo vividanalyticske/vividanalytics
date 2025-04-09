@@ -1,7 +1,7 @@
 import React from 'react'
 import './globals.css'
-import Navbar from './components/navigation/Navbar'
-import Footer from './components/navigation/Footer'
+import Navbar from '@/components/navigation/Navbar'
+import Footer from '@/components/navigation/Footer'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',

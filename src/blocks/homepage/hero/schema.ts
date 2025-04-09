@@ -10,12 +10,5 @@ export const Hero: Block = {
       type: 'textarea',
       required: true,
     },
-    {
-      name: 'hero_image',
-      label: 'Hero Image',
-      type: 'upload',
-      relationTo: 'media',
-      required: true,
-    },
   ],
 }

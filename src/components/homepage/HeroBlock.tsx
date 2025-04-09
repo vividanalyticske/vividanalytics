@@ -68,16 +68,57 @@ export default function HeroBlock({ block }: HeroBlockProps) {
   return (
     <section ref={ref} className="relative min-h-[85vh] overflow-hidden bg-white">
       {/* Abstract shapes in background */}
-      <div
-        className={`absolute inset-0 w-full h-full bg-cover bg-center bg-fixed z-0 transition-opacity duration-1000 ${
-          isImageLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ backgroundImage: `url('${heroImage}')` }}
-      />
-      <div className="absolute inset-0 bg-white/80 z-10" />
+      <div className="absolute top-0 right-0 w-full h-full overflow-hidden z-0">
+        {/* Large circle */}
+        <motion.div
+          className="absolute top-[-15%] right-[-15%] w-[60%] h-[60%] rounded-full bg-[#13589e]/5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+
+        {/* Small circles */}
+        <motion.div
+          className="absolute top-[65%] left-[10%] w-[10%] h-[10%] rounded-full bg-[#b4d23d]/10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+        />
+
+        <motion.div
+          className="absolute top-[25%] left-[5%] w-[5%] h-[5%] rounded-full bg-[#13589e]/10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9 }}
+        />
+
+        {/* Connecting lines */}
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <motion.path
+            d="M200,200 C300,300 700,200 900,400"
+            stroke="#13589e"
+            strokeWidth="1"
+            strokeOpacity="0.1"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, delay: 1.2 }}
+          />
+          <motion.path
+            d="M300,600 C400,500 600,700 800,500"
+            stroke="#b4d23d"
+            strokeWidth="1"
+            strokeOpacity="0.1"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, delay: 1.4 }}
+          />
+        </svg>
+      </div>
 
       {/* Main content container */}
-      <div className="xl:container mx-auto h-full grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 py-24 lg:py-32 relative z-20">
+      <div className="xl:container mx-auto h-full grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 py-24 lg:py-32 z-10 relative">
         {/* Content area - spans 6 columns on large screens */}
         <div className="lg:col-span-6 flex flex-col justify-center">
           <motion.div

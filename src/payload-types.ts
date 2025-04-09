@@ -161,14 +161,26 @@ export interface Page {
   title: string;
   slug: string;
   layout?:
-    | {
-        heading: string;
-        subheading: string;
-        hero_image: number | Media;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'hero';
-      }[]
+    | (
+        | {
+            heading: string;
+            subheading: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            company_logos?:
+              | {
+                  logo: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logos-section';
+          }
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -283,7 +295,18 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               heading?: T;
               subheading?: T;
-              hero_image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'logos-section'?:
+          | T
+          | {
+              company_logos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };
