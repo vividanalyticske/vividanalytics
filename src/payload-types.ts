@@ -180,6 +180,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'logos-section';
           }
+        | {
+            heading: string;
+            description: string;
+            experience: number;
+            clients: number;
+            photos?:
+              | {
+                  about_photo: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero-about';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -305,6 +320,22 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     logo?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'hero-about'?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              experience?: T;
+              clients?: T;
+              photos?:
+                | T
+                | {
+                    about_photo?: T;
                     id?: T;
                   };
               id?: T;

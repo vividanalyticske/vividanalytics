@@ -201,12 +201,12 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
-                  className="px-4 py-2 w-full rounded-l-md text-gray-900 focus:outline-none"
+                  className="px-4 py-2 w-full placeholder:text-white rounded-l-md text-gray-900 focus:outline-none border border-white"
                   required
                 />
                 <button
                   type="submit"
-                  className="bg-[#b4d23d] text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-all"
+                  className="bg-[#b4d23d] text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-all cursor-pointer"
                 >
                   <ArrowRight className="h-5 w-5" />
                 </button>
