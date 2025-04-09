@@ -4,11 +4,13 @@ import { HeroAbout } from '@/blocks/homepage/home-about/schema'
 import { ServicesBlock } from '@/blocks/homepage/services/schema'
 import { WhyChooseUs } from '@/blocks/homepage/why-us/schema'
 import { CTA } from '@/blocks/homepage/cta/schema'
+import { OurSolutions } from '@/blocks/solutions/schema'
 
 import type { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+
   fields: [
     {
       name: 'title',
@@ -29,7 +31,7 @@ export const Pages: CollectionConfig = {
       name: 'layout',
       label: 'Layout',
       type: 'blocks',
-      blocks: [Hero, LogosSection, HeroAbout, ServicesBlock, WhyChooseUs, CTA],
+      blocks: [Hero, LogosSection, HeroAbout, ServicesBlock, WhyChooseUs, CTA, OurSolutions],
     },
   ],
 }

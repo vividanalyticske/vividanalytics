@@ -47,7 +47,7 @@ const Navbar = () => {
               <span>Home</span>
             </Link>
             <Link
-              href="/solutions"
+              href="/our-solutions"
               className="text-[#13589e] hover:text-[#b4d23d] flex items-center space-x-1"
             >
               <Puzzle size={18} />

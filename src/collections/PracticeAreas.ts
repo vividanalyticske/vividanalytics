@@ -5,11 +5,18 @@ export const PracticeAreas: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     description: 'Add Practice Area',
+    group: 'Practice Areas',
   },
   fields: [
     {
       name: 'title',
       label: 'Title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
       type: 'text',
       required: true,
     },

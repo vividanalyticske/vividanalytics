@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     pages: Page;
     'our-solutions': OurSolution;
+    'practice-areas': PracticeArea;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     'our-solutions': OurSolutionsSelect<false> | OurSolutionsSelect<true>;
+    'practice-areas': PracticeAreasSelect<false> | PracticeAreasSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -228,6 +230,12 @@ export interface Page {
             blockName?: string | null;
             blockType: 'cta-section';
           }
+        | {
+            solutions?: (number | OurSolution)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'solutionblock';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -242,6 +250,20 @@ export interface Page {
 export interface OurSolution {
   id: number;
   title: string;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Add Practice Area
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "practice-areas".
+ */
+export interface PracticeArea {
+  id: number;
+  title: string;
+  slug: string;
   description: string;
   updatedAt: string;
   createdAt: string;
@@ -268,6 +290,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'our-solutions';
         value: number | OurSolution;
+      } | null)
+    | ({
+        relationTo: 'practice-areas';
+        value: number | PracticeArea;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -425,6 +451,13 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        solutionblock?:
+          | T
+          | {
+              solutions?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -435,6 +468,17 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface OurSolutionsSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "practice-areas_select".
+ */
+export interface PracticeAreasSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
