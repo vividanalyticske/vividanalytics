@@ -2,6 +2,9 @@ import { Block } from 'payload'
 
 export const ServicesBlock: Block = {
   slug: 'services-block',
+  admin: {
+    group: 'HomePage',
+  },
   fields: [
     {
       name: 'heading',
@@ -9,11 +12,12 @@ export const ServicesBlock: Block = {
       type: 'text',
       required: true,
     },
+
     {
-      name: 'practiceAreas',
-      label: 'Practice Areas',
+      name: 'solutions',
+      label: 'Our Solutions',
       type: 'relationship',
-      relationTo: 'practice-areas',
+      relationTo: 'our-solutions',
       hasMany: true,
     },
   ],

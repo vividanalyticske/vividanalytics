@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    'our-solutions': OurSolution;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    'our-solutions': OurSolutionsSelect<false> | OurSolutionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -195,8 +197,42 @@ export interface Page {
             blockName?: string | null;
             blockType: 'hero-about';
           }
+        | {
+            heading: string;
+            solutions?: (number | OurSolution)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'services-block';
+          }
+        | {
+            heading: string;
+            description: string;
+            listings?:
+              | {
+                  title: string;
+                  content: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-choose-us';
+          }
       )[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Add Solution
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-solutions".
+ */
+export interface OurSolution {
+  id: number;
+  title: string;
+  description: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -218,6 +254,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'our-solutions';
+        value: number | OurSolution;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -341,7 +381,40 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        'services-block'?:
+          | T
+          | {
+              heading?: T;
+              solutions?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'why-choose-us'?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              listings?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-solutions_select".
+ */
+export interface OurSolutionsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -2,6 +2,9 @@ import { Block } from 'payload'
 
 export const LogosSection: Block = {
   slug: 'logos-section',
+  admin: {
+    group: 'HomePage',
+  },
   fields: [
     {
       name: 'company_logos',

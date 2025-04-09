@@ -3,6 +3,7 @@ import React from 'react'
 import HeroBlock from '@/components/homepage/HeroBlock'
 import LogosSection from '@/components/homepage/LogosSection'
 import HeroAboutSection from '@/components/homepage/HeroAbout'
+import HomeServicesSection from '@/components/homepage/ServicesSection'
 
 import config from '@/payload.config'
 import './globals.css'
@@ -40,7 +41,8 @@ function renderBlock(block: any, index: number) {
       return <LogosSection key={index} block={block} />
     case 'hero-about':
       return <HeroAboutSection key={index} block={block} />
-
+    case 'services-block':
+      return <HomeServicesSection key={index} block={block} />
     default:
       return null
   }

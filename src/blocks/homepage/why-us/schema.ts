@@ -2,6 +2,9 @@ import { Block } from 'payload'
 
 export const WhyChooseUs: Block = {
   slug: 'why-choose-us', // Unique identifier for the block
+  admin: {
+    group: 'HomePage',
+  },
   fields: [
     {
       name: 'heading',
