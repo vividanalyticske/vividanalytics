@@ -1,5 +1,4 @@
 import React from 'react'
-import { Globe2 } from 'lucide-react'
 
 interface SolutionsBlockProps {
   block: {

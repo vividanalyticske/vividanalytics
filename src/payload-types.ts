@@ -238,6 +238,34 @@ export interface Page {
             blockName?: string | null;
             blockType: 'solutionblock';
           }
+        | {
+            heading: string;
+            description: string;
+            photo: number | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'about';
+          }
+        | {
+            mission: string;
+            vision: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'goals';
+          }
+        | {
+            team_profiles?: (number | Team)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ourTeam';
+          }
+        | {
+            title: string;
+            description: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'aboutCta';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -252,20 +280,6 @@ export interface Page {
 export interface OurSolution {
   id: number;
   title: string;
-  description: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Add Practice Area
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "practice-areas".
- */
-export interface PracticeArea {
-  id: number;
-  title: string;
-  slug: string;
   description: string;
   updatedAt: string;
   createdAt: string;
@@ -290,6 +304,20 @@ export interface Team {
   instagram?: string | null;
   bio: string;
   experience: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Add Practice Area
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "practice-areas".
+ */
+export interface PracticeArea {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -484,6 +512,38 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               solutions?: T;
+              id?: T;
+              blockName?: T;
+            };
+        about?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              photo?: T;
+              id?: T;
+              blockName?: T;
+            };
+        goals?:
+          | T
+          | {
+              mission?: T;
+              vision?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ourTeam?:
+          | T
+          | {
+              team_profiles?: T;
+              id?: T;
+              blockName?: T;
+            };
+        aboutCta?:
+          | T
+          | {
+              title?: T;
+              description?: T;
               id?: T;
               blockName?: T;
             };

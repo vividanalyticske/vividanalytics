@@ -1,7 +1,9 @@
 import { getPayload } from 'payload'
 import React from 'react'
 import AboutHero from '@/components/aboutPage/AboutHero'
-import SolutionList from '@/components/solutionpage/SolutionList'
+import AboutSection from '@/components/aboutPage/AboutSection'
+import GoalsSection from '@/components/aboutPage/GoalsSection'
+import TeamSection from '@/components/aboutPage/TeamSection'
 
 import config from '@/payload.config'
 
@@ -33,9 +35,12 @@ export default async function HomePage() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function renderBlock(block: any, index: number) {
   switch (block.blockType) {
-    case 'solutionblock':
-      return <SolutionList key={index} block={block} />
-
+    case 'about':
+      return <AboutSection key={index} block={block} />
+    case 'goals':
+      return <GoalsSection key={index} block={block} />
+    case 'ourTeam':
+      return <TeamSection key={index} block={block} />
     default:
       return null
   }

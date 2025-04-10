@@ -2,14 +2,18 @@ import { Block } from 'payload'
 
 export const About: Block = {
   slug: 'about',
+  admin: { group: 'About Page' },
   fields: [
-    { name: 'clause', type: 'textarea', required: true },
+    { name: 'heading', type: 'textarea', required: true },
+    { name: 'description', type: 'textarea', required: true },
     { name: 'photo', label: 'Firm Photo', type: 'upload', relationTo: 'media', required: true },
   ],
 }
 
 export const Goals: Block = {
   slug: 'goals',
+  admin: { group: 'About Page' },
+
   fields: [
     { name: 'mission', type: 'textarea', required: true },
     { name: 'vision', type: 'textarea', required: true },
@@ -18,6 +22,8 @@ export const Goals: Block = {
 
 export const OurTeam: Block = {
   slug: 'ourTeam',
+  admin: { group: 'About Page' },
+
   fields: [
     {
       name: 'team_profiles',
@@ -26,5 +32,15 @@ export const OurTeam: Block = {
       relationTo: 'team',
       hasMany: true,
     },
+  ],
+}
+
+export const AboutCTA: Block = {
+  slug: 'aboutCta',
+  admin: { group: 'About Page' },
+
+  fields: [
+    { name: 'title', type: 'text', required: true },
+    { name: 'description', type: 'text', required: true },
   ],
 }
