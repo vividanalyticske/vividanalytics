@@ -1,13 +1,12 @@
 import { getPayload } from 'payload'
 import React from 'react'
-import AboutHero from '@/components/aboutPage/AboutHero'
-import AboutSection from '@/components/aboutPage/AboutSection'
-import GoalsSection from '@/components/aboutPage/GoalsSection'
-import TeamSection from '@/components/aboutPage/TeamSection'
+import ContactHero from '@/components/contactPage/ContactHero'
+import ContactForm from '@/components/contactPage/ContactSection'
+import ContactSocials from '@/components/contactPage/ContactSocials'
 
 import config from '@/payload.config'
 
-export default async function AboutPage() {
+export default async function ContactPage() {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const {
@@ -15,7 +14,7 @@ export default async function AboutPage() {
   } = await payload.find({
     collection: 'pages',
     where: {
-      slug: { equals: 'about-us' },
+      slug: { equals: 'contact-us' },
     },
   })
 
@@ -26,7 +25,7 @@ export default async function AboutPage() {
   // Render the page layout dynamically
   return (
     <>
-      <AboutHero />
+      <ContactHero />
       {page.layout?.map((block, index) => renderBlock(block, index))}
     </>
   )
@@ -35,12 +34,11 @@ export default async function AboutPage() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function renderBlock(block: any, index: number) {
   switch (block.blockType) {
-    case 'about':
-      return <AboutSection key={index} block={block} />
-    case 'goals':
-      return <GoalsSection key={index} block={block} />
-    case 'ourTeam':
-      return <TeamSection key={index} block={block} />
+    case 'contact':
+      return <ContactForm key={index} block={block} />
+    case 'contactAddresses':
+      return <ContactSocials key={index} block={block} />
+
     default:
       return null
   }

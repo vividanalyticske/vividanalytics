@@ -34,13 +34,3 @@ export const OurTeam: Block = {
     },
   ],
 }
-
-export const AboutCTA: Block = {
-  slug: 'aboutCta',
-  admin: { group: 'About Page' },
-
-  fields: [
-    { name: 'title', type: 'text', required: true },
-    { name: 'description', type: 'text', required: true },
-  ],
-}

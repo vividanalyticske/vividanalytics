@@ -5,7 +5,8 @@ import { ServicesBlock } from '@/blocks/homepage/services/schema'
 import { WhyChooseUs } from '@/blocks/homepage/why-us/schema'
 import { CTA } from '@/blocks/homepage/cta/schema'
 import { OurSolutions } from '@/blocks/solutions/schema'
-import { About, Goals, OurTeam, AboutCTA } from '@/blocks/about/schema'
+import { About, Goals, OurTeam } from '@/blocks/about/schema'
+import { Contact, ContactAddresses } from '@/blocks/contactPage/schema'
 
 import type { CollectionConfig } from 'payload'
 
@@ -43,7 +44,8 @@ export const Pages: CollectionConfig = {
         About,
         Goals,
         OurTeam,
-        AboutCTA,
+        Contact,
+        ContactAddresses,
       ],
     },
   ],
