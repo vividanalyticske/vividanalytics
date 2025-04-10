@@ -16,6 +16,7 @@ import { Pages } from './collections/Pages'
 import Solution from './collections/Solutions'
 import PracticeAreas from './collections/PracticeAreas'
 import Team from './collections/Team'
+import Newsletter from './collections/Newsletter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +28,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Pages, Solution, PracticeAreas, Team],
+  collections: [Users, Media, Pages, Solution, PracticeAreas, Team, Newsletter],
   serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

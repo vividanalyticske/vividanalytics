@@ -1,32 +1,46 @@
 'use client'
 
 import { useState } from 'react'
+import { Mail, Phone, ArrowRight, ChevronUp, Send, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  Mail,
-  Phone,
-  MapPin,
-  ArrowRight,
-  Linkedin,
-  Twitter,
-  Facebook,
-  Instagram,
-  ChevronUp,
-  BarChart2,
-} from 'lucide-react'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false)
 
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (email) {
-      setSubscribed(true)
-      setEmail('')
-      // Here you would typically send the email to your backend
-      setTimeout(() => setSubscribed(false), 3000)
+    if (!email) return
+
+    // Reset notification states
+    setSubscribed(false)
+    setAlreadySubscribed(false)
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await res.json()
+
+      if (res.status === 409) {
+        // Show already subscribed notification instead of alert
+        setAlreadySubscribed(true)
+        setTimeout(() => setAlreadySubscribed(false), 5000)
+      } else if (res.ok) {
+        setSubscribed(true)
+        setEmail('')
+        setTimeout(() => setSubscribed(false), 5000)
+      } else {
+        alert(data.error || 'Something went wrong. Please try again later.')
+      }
+    } catch (error) {
+      alert('Failed to subscribe. Please try again later.')
+      console.error(error)
     }
   }
 
@@ -38,243 +52,180 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gradient-to-br from-[#13589e] to-[#0c3b6e] text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="relative bg-[#13589e] text-white">
+      {/* Decorative top border */}
+      <div className="h-2 bg-gradient-to-r from-[#9ab534] via-[#b4d23d] to-[#9ab534]"></div>
+
+      {/* Wave separator */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden">
+        <svg
+          className="relative block w-full h-16"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="#ffffff"
+            fillOpacity="0.05"
+            d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+          />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Information */}
-          <div className="mb-8 md:mb-0">
-            <div className="flex items-center mb-4">
-              <Image src="/logo_white.png" alt="Logo" width={120} height={120} className="mr-2" />
+          <div className="relative z-10">
+            <div className="flex items-center mb-6">
+              <Image
+                src="/logo_white.png"
+                alt="Logo"
+                width={140}
+                height={140}
+                className="mr-2 drop-shadow-md"
+              />
             </div>
-            <p className="text-gray-200 mb-6">
+            <p className="text-gray-300 mb-8 text-lg leading-relaxed">
               Transforming data into actionable insights for your business growth and success.
             </p>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <MapPin className="h-5 w-5 text-[#b4d23d] mr-2 mt-1 flex-shrink-0" />
-                <p className="text-gray-200">
-                  123 Analytics Drive, Suite 200
-                  <br />
-                  Data Valley, CA 94103
+            <div className="space-y-4">
+              <div className="flex items-center group">
+                <div className="bg-[#b4d23d] bg-opacity-20 p-2.5 rounded-full mr-4 group-hover:bg-opacity-30 transition-all">
+                  <Phone className="h-5 w-5 text-white" />
+                </div>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  +254 720 206088
                 </p>
               </div>
-              <div className="flex items-center">
-                <Phone className="h-5 w-5 text-[#b4d23d] mr-2 flex-shrink-0" />
-                <p className="text-gray-200">(555) 123-4567</p>
-              </div>
-              <div className="flex items-center">
-                <Mail className="h-5 w-5 text-[#b4d23d] mr-2 flex-shrink-0" />
-                <p className="text-gray-200">info@vividanalytics.com</p>
+              <div className="flex items-center group">
+                <div className="bg-[#b4d23d] bg-opacity-20 p-2.5 rounded-full mr-4 group-hover:bg-opacity-30 transition-all">
+                  <Mail className="h-5 w-5 text-white" />
+                </div>
+                <p className="text-gray-300 group-hover:text-white transition-colors">
+                  info@vividanalytics.com
+                </p>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="mb-8 md:mb-0">
-            <h3 className="text-xl font-semibold mb-6 relative">
-              <span className="bg-[#b4d23d] w-12 h-1 absolute -bottom-2 left-0"></span>
+          <div className="relative z-10">
+            <h3 className="text-2xl font-bold mb-8 relative inline-block">
               Quick Links
+              <span className="bg-[#b4d23d] w-12 h-1 absolute -bottom-3 left-0 rounded-full"></span>
             </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/solutions"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Solutions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/practice-areas"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Practice Areas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about-us"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-200 hover:text-[#b4d23d] flex items-center">
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact-us"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Careers
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="mb-8 md:mb-0">
-            <h3 className="text-xl font-semibold mb-6 relative">
-              <span className="bg-[#b4d23d] w-12 h-1 absolute -bottom-2 left-0"></span>
-              Our Services
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/data-visualization"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Data Visualization
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/predictive-analytics"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Predictive Analytics
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/business-intelligence"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Business Intelligence
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/machine-learning"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Machine Learning
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/data-consulting"
-                  className="text-gray-200 hover:text-[#b4d23d] flex items-center"
-                >
-                  <ArrowRight className="h-4 w-4 mr-2" />
-                  Data Consulting
-                </Link>
-              </li>
+            <ul className="grid grid-cols-2 gap-4 mt-2">
+              {[
+                { href: '/solutions', label: 'Solutions' },
+                { href: '/practice-areas', label: 'Practice Areas' },
+                { href: '/about-us', label: 'About Us' },
+                { href: '/blog', label: 'Blog' },
+                { href: '/contact-us', label: 'Contact Us' },
+              ].map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-300 hover:text-[#b4d23d] flex items-center group transition-all duration-300"
+                  >
+                    <div className="bg-[#b4d23d] bg-opacity-0 group-hover:bg-opacity-20 p-1 rounded-full mr-3 transition-all duration-300">
+                      <ArrowRight className="h-4 w-4 text-[#b4d23d] transform group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                    <span className="border-b border-transparent group-hover:border-[#b4d23d] pb-1 transition-all">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Newsletter */}
-          <div>
-            <h3 className="text-xl font-semibold mb-6 relative">
-              <span className="bg-[#b4d23d] w-12 h-1 absolute -bottom-2 left-0"></span>
+          <div className="relative z-10">
+            <h3 className="text-2xl font-bold mb-8 relative inline-block">
               Stay Updated
+              <span className="bg-[#b4d23d] w-12 h-1 absolute -bottom-3 left-0 rounded-full"></span>
             </h3>
-            <p className="text-gray-200 mb-4">
+            <p className="text-gray-300 mb-6 leading-relaxed">
               Subscribe to our newsletter for the latest insights and analytics trends.
             </p>
             <form onSubmit={handleSubscribe} className="mb-6">
-              <div className="flex">
+              <div className="relative">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
-                  className="px-4 py-2 w-full placeholder:text-white rounded-l-md text-gray-900 focus:outline-none border border-white"
+                  placeholder="Your email address"
+                  className="w-full px-5 py-4 pr-14 rounded-lg bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#b4d23d] focus:ring-opacity-50 transition-all"
                   required
                 />
                 <button
                   type="submit"
-                  className="bg-[#b4d23d] text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-all cursor-pointer"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#b4d23d] text-[#13589e] p-2.5 rounded-md hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-white"
+                  aria-label="Subscribe"
                 >
-                  <ArrowRight className="h-5 w-5" />
+                  <Send className="h-5 w-5" />
                 </button>
               </div>
+
+              {/* Success notification */}
               {subscribed && (
-                <p className="text-[#b4d23d] mt-2 text-sm">Thank you for subscribing!</p>
+                <div className="mt-4 px-4 py-3 bg-[#b4d23d] bg-opacity-20 rounded-md border-l-4 border-[#b4d23d] animate-fade-in">
+                  <p className="text-white text-sm">
+                    Thank you for subscribing! We{"'"}ll be in touch soon.
+                  </p>
+                </div>
+              )}
+
+              {/* Already subscribed notification */}
+              {alreadySubscribed && (
+                <div className="mt-4 px-4 py-3 bg-amber-500 bg-opacity-20 rounded-md border-l-4 border-amber-500 animate-fade-in flex items-start">
+                  <AlertCircle className="h-5 w-5 text-amber-500 mr-2 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white text-sm font-medium">Already Subscribed</p>
+                    <p className="text-white/80 text-sm">
+                      This email is already in our subscriber list. Thank you for your continued
+                      interest!
+                    </p>
+                  </div>
+                </div>
               )}
             </form>
-            <div>
-              <h4 className="text-lg font-medium mb-4">Follow Us</h4>
-              <div className="flex space-x-4">
-                <Link
-                  href="#"
-                  className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-opacity-20 transition-all"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-opacity-20 transition-all"
-                >
-                  <Twitter className="h-5 w-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-opacity-20 transition-all"
-                >
-                  <Facebook className="h-5 w-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-opacity-20 transition-all"
-                >
-                  <Instagram className="h-5 w-5" />
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-blue-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-300 mb-4 md:mb-0">
+        <div className="mt-16 pt-8 border-t border-white border-opacity-10 flex justify-center items-center">
+          <p className="text-white/80 mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Vivid Analytics. All rights reserved.
           </p>
-          <div className="flex space-x-4 text-sm text-gray-300">
-            <Link href="/privacy-policy" className="hover:text-[#b4d23d]">
-              Privacy Policy
-            </Link>
-            <span>|</span>
-            <Link href="/terms-of-service" className="hover:text-[#b4d23d]">
-              Terms of Service
-            </Link>
-            <span>|</span>
-            <Link href="/sitemap" className="hover:text-[#b4d23d]">
-              Sitemap
-            </Link>
-          </div>
         </div>
       </div>
 
       {/* Back to top button */}
       <button
         onClick={scrollToTop}
-        className="bg-[#b4d23d] text-white p-3 rounded-full shadow-lg absolute -top-5 right-8 hover:bg-opacity-90 transition-all"
+        className="bg-[#b4d23d] text-[#13589e] p-3 rounded-full shadow-lg absolute -top-6 right-8 hover:bg-white hover:text-[#b4d23d] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+        aria-label="Back to top"
       >
-        <ChevronUp className="h-5 w-5" />
+        <ChevronUp className="h-6 w-6" />
       </button>
+
+      {/* Add some keyframe animations for the notifications */}
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
     </footer>
   )
 }

@@ -213,7 +213,7 @@ export default function ContactForm({ block }: ContactBlock) {
                         )
                       case 'textarea':
                         return (
-                          <div key={field.id} className="relative col-span-2 md:col-span-1">
+                          <div key={field.id} className="relative col-span-2">
                             <label
                               htmlFor={fieldId}
                               className="block text-sm font-medium text-gray-700 mb-1"
