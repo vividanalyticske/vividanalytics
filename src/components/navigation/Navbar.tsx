@@ -106,7 +106,7 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="/solutions"
+              href="/our-solutions"
               className="text-[#13589e] hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
               <Puzzle size={18} className="mr-2" />
@@ -120,7 +120,7 @@ const Navbar = () => {
               Practice Areas
             </Link>
             <Link
-              href="/about"
+              href="/about-us"
               className="text-[#13589e] hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
               <Info size={18} className="mr-2" />
@@ -134,8 +134,8 @@ const Navbar = () => {
               Blog
             </Link>
             <Link
-              href="/contact"
-              className="bg-[#b4d23d] text-white block px-3 py-2 rounded-md text-base font-medium"
+              href="/contact-us"
+              className="bg-[#b4d23d] text-white block px-3 py-2 rounded-md text-base font-medium w-1/2 mt-4"
             >
               <Mail size={18} className="inline mr-2" />
               Contact Us

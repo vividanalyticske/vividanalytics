@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { ChevronRight, Users, BarChart2, Award, Clock } from 'lucide-react'
 
 interface AboutProps {
   block: {
@@ -18,7 +17,7 @@ export default function AboutSection({ block }: AboutProps) {
   const photoUrl = block?.photo?.url
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-8 md:py-24 bg-white overflow-hidden">
       <div className="xl:container mx-auto px-4 md:px-8 xl:px-4">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Left Column - Image and Stats */}

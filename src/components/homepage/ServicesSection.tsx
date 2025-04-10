@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Link from 'next/link'
-import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 interface ServicesBlockProps {
   block: {
@@ -114,7 +113,7 @@ export default function HomeServicesSection({ block }: ServicesBlockProps) {
           </motion.div>
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl font-bold text-white mt-4 max-w-3xl mx-auto leading-tight"
+            className="text-3xl md:text-4xl font-bold text-white mt-4 max-w-3xl mx-auto leading-tight"
           >
             {heading}
           </motion.h2>
@@ -122,7 +121,7 @@ export default function HomeServicesSection({ block }: ServicesBlockProps) {
 
         {solutions.length > 0 && (
           <div className="relative max-w-5xl mx-auto">
-            <div className="flex justify-between items-center mb-10">
+            <div className="flex justify-between items-center mb-4 md:mb-10">
               <motion.h3
                 variants={fadeInUp}
                 initial="hidden"
@@ -192,7 +191,7 @@ export default function HomeServicesSection({ block }: ServicesBlockProps) {
               variants={fadeInUp}
               initial="hidden"
               animate={controls}
-              className="flex justify-center -mt-2 md:mt-10 space-x-2"
+              className="flex justify-center mt-6 md:mt-10 space-x-2"
             >
               {solutions.map((_, index) => (
                 <button

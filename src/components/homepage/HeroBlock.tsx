@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { ArrowRight, BarChart2, PieChart, TrendingUp } from 'lucide-react'
 import { motion, useAnimation } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import DataVisual from './DesignObjects/DataVisual'
 
@@ -66,7 +65,7 @@ export default function HeroBlock({ block }: HeroBlockProps) {
   }, [features.length])
 
   return (
-    <section ref={ref} className="relative min-h-[80vh] md:min-h-[85vh] overflow-hidden bg-white">
+    <section ref={ref} className="relative md:min-h-[85vh] overflow-hidden bg-white py-12 md:py-0">
       {/* Abstract shapes in background */}
       <div className="absolute top-0 right-0 w-full h-full overflow-hidden z-0">
         {/* Large circle */}
@@ -118,7 +117,7 @@ export default function HeroBlock({ block }: HeroBlockProps) {
       </div>
 
       {/* Main content container */}
-      <div className="xl:container mx-auto h-full grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 pt-36 md:pt-0 md:py-24 lg:py-32 z-10 relative">
+      <div className="xl:container mx-auto h-full grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 pt-24 md:pt-0 md:py-24 lg:py-32 z-10 relative">
         {/* Content area - spans 6 columns on large screens */}
         <div className="lg:col-span-6 flex flex-col justify-center">
           <motion.div

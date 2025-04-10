@@ -3,6 +3,7 @@ import React from 'react'
 import ContactHero from '@/components/contactPage/ContactHero'
 import ContactForm from '@/components/contactPage/ContactSection'
 import ContactSocials from '@/components/contactPage/ContactSocials'
+import MapArea from '@/components/contactPage/MapArea'
 
 import config from '@/payload.config'
 
@@ -38,6 +39,8 @@ function renderBlock(block: any, index: number) {
       return <ContactForm key={index} block={block} />
     case 'contactAddresses':
       return <ContactSocials key={index} block={block} />
+    case 'location':
+      return <MapArea key={index} block={block} />
 
     default:
       return null

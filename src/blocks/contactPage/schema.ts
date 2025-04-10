@@ -57,3 +57,9 @@ export const ContactAddresses: Block = {
     },
   ],
 }
+
+export const Map: Block = {
+  slug: 'location',
+  admin: { group: 'Contact Page' },
+  fields: [{ name: 'iframe', type: 'textarea', required: true }],
+}

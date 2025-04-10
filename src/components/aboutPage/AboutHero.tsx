@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function AboutHero() {
   return (
-    <section className="w-full bg-[#13589e] relative overflow-hidden pt-20 flex justify-center items-center border-b-2 border-[#b4d23d] min-h-80 md:min-h-80">
+    <section className="w-full bg-[#13589e] relative overflow-hidden pt-20 flex justify-center items-center border-b-2 border-[#b4d23d] min-h-60 md:min-h-80">
       <div className="flex flex-col justify-center items-center">
         <h2 className="text-4xl font-bold text-white">About Us</h2>
         <div className="bg-[#b4d23d] h-1 w-16 mt-4"></div>

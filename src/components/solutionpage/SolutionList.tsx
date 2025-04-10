@@ -13,7 +13,7 @@ export default function SolutionList({ block }: SolutionsBlockProps) {
   const solutions = block?.solutions || []
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-8 md:py-20 bg-gray-50">
       <div className="xl:container mx-auto px-4 md:px-12 xl:px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {solutions.map((solution, index) => (

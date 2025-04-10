@@ -299,6 +299,12 @@ export interface Page {
             blockName?: string | null;
             blockType: 'contactAddresses';
           }
+        | {
+            iframe: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'location';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -823,6 +829,13 @@ export interface PagesSelect<T extends boolean = true> {
                     email?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        location?:
+          | T
+          | {
+              iframe?: T;
               id?: T;
               blockName?: T;
             };
