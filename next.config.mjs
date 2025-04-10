@@ -4,7 +4,7 @@ import { withPayload } from '@payloadcms/next/withPayload'
 const nextConfig = {
   // Your Next.js config here
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'vividanalytics.vercel.app'],
   },
 }
 
