@@ -46,20 +46,7 @@ const Navbar = () => {
               <Home size={18} />
               <span>Home</span>
             </Link>
-            <Link
-              href="/our-solutions"
-              className="text-[#13589e] hover:text-[#b4d23d] flex items-center space-x-1"
-            >
-              <Puzzle size={18} />
-              <span>Solutions</span>
-            </Link>
-            <Link
-              href="/practice-areas"
-              className="text-[#13589e] hover:text-[#b4d23d] flex items-center space-x-1"
-            >
-              <Briefcase size={18} />
-              <span>Practice Areas</span>
-            </Link>
+
             <Link
               href="/about-us"
               className="text-[#13589e] hover:text-[#b4d23d] flex items-center space-x-1"
@@ -67,6 +54,15 @@ const Navbar = () => {
               <Info size={18} />
               <span>About Us</span>
             </Link>
+
+            <Link
+              href="/our-solutions"
+              className="text-[#13589e] hover:text-[#b4d23d] flex items-center space-x-1"
+            >
+              <Puzzle size={18} />
+              <span>Solutions</span>
+            </Link>
+
             <Link
               href="/blog"
               className="text-[#13589e] hover:text-[#b4d23d] flex items-center space-x-1"
@@ -106,25 +102,18 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="/our-solutions"
-              className="text-[#13589e] hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center"
-            >
-              <Puzzle size={18} className="mr-2" />
-              Solutions
-            </Link>
-            <Link
-              href="/practice-areas"
-              className="text-[#13589e] hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center"
-            >
-              <Briefcase size={18} className="mr-2" />
-              Practice Areas
-            </Link>
-            <Link
               href="/about-us"
               className="text-[#13589e] hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center"
             >
               <Info size={18} className="mr-2" />
               About Us
+            </Link>
+            <Link
+              href="/our-solutions"
+              className="text-[#13589e] hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center"
+            >
+              <Puzzle size={18} className="mr-2" />
+              Solutions
             </Link>
             <Link
               href="/blog"

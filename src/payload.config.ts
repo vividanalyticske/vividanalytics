@@ -17,6 +17,7 @@ import Solution from './collections/Solutions'
 import PracticeAreas from './collections/PracticeAreas'
 import Team from './collections/Team'
 import Newsletter from './collections/Newsletter'
+import Blog from './collections/Blog'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Pages, Solution, PracticeAreas, Team, Newsletter],
+  collections: [Users, Media, Blog, Pages, Solution, PracticeAreas, Team, Newsletter],
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
   // serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),

@@ -96,7 +96,7 @@ export default function WhyBlock({ block }: WhyBlockProps) {
           </motion.div>
 
           {/* Image Column */}
-          <motion.div variants={fadeInUp} className="w-1/2 lg:w-1/2">
+          <motion.div variants={fadeInUp} className="w-1/2 lg:w-1/2 xl:w-[40vw]">
             <div className="relative">
               {photoUrl ? (
                 <div className="relative">

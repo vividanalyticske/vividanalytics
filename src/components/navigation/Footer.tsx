@@ -117,7 +117,6 @@ const Footer = () => {
             <ul className="grid grid-cols-2 gap-4 mt-2">
               {[
                 { href: '/solutions', label: 'Solutions' },
-                { href: '/practice-areas', label: 'Practice Areas' },
                 { href: '/about-us', label: 'About Us' },
                 { href: '/blog', label: 'Blog' },
                 { href: '/contact-us', label: 'Contact Us' },

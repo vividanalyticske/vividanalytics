@@ -164,9 +164,6 @@ export default function HomeServicesSection({ block }: ServicesBlockProps) {
                   <div className="bg-white border-2 border-[#b4d23d] rounded-lg shadow-lg overflow-hidden">
                     <div className="grid md:grid-cols-2">
                       <div className="p-8 md:p-12 flex flex-col justify-center">
-                        <span className="text-[#b4d23d] font-medium mb-4">
-                          {`SERVICE ${currentIndex + 1}`}
-                        </span>
                         <h4 className="text-2xl font-bold text-[#13589e] mb-4 uppercase">
                           {solutions[currentIndex]?.title}
                         </h4>

@@ -65,7 +65,10 @@ export default function HeroBlock({ block }: HeroBlockProps) {
   }, [features.length])
 
   return (
-    <section ref={ref} className="relative md:min-h-[85vh] overflow-hidden bg-white py-12 md:py-0">
+    <section
+      ref={ref}
+      className="relative md:min-h-[85vh] overflow-hidden bg-[#13589e] py-12 md:py-0"
+    >
       {/* Abstract shapes in background */}
       <div className="absolute top-0 right-0 w-full h-full overflow-hidden z-0">
         {/* Large circle */}
@@ -137,13 +140,13 @@ export default function HeroBlock({ block }: HeroBlockProps) {
               }}
             >
               <div className="h-2 w-8 bg-[#b4d23d] mr-3"></div>
-              <span className="text-[#13589e] uppercase tracking-wider font-semibold">
+              <span className="text-[#b4d23d] uppercase tracking-wider font-semibold">
                 Vivid Analytics
               </span>
             </motion.div>
 
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-[#13589e] leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight"
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -158,7 +161,7 @@ export default function HeroBlock({ block }: HeroBlockProps) {
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
               }}
             >
-              <p className="text-lg mb-8 text-gray-600 max-w-2xl leading-relaxed">{subheading}</p>
+              <p className="text-lg mb-8 text-white/70 max-w-2xl leading-relaxed">{subheading}</p>
             </motion.div>
 
             {/* Feature highlights */}
@@ -178,9 +181,9 @@ export default function HeroBlock({ block }: HeroBlockProps) {
                 className="flex items-center py-2"
               >
                 {React.createElement(features[currentFeature].icon, {
-                  className: 'w-6 h-6 text-[#13589e] mr-3',
+                  className: 'w-6 h-6 text-white mr-3',
                 })}
-                <span className="text-gray-700 font-medium">{features[currentFeature].text}</span>
+                <span className="text-white/80 font-medium">{features[currentFeature].text}</span>
               </motion.div>
 
               {/* Progress bar */}
@@ -201,7 +204,7 @@ export default function HeroBlock({ block }: HeroBlockProps) {
             >
               <Link
                 href="/solutions"
-                className="bg-[#13589e] hover:bg-[#13589e]/90 text-white px-6 py-3 rounded-md shadow-sm flex items-center justify-center group transition-all duration-300 w-full sm:w-auto"
+                className="bg-[#b4d23d] hover:bg-[#deeaaa] text-white px-6 py-3 rounded-md shadow-sm flex items-center justify-center group transition-all duration-300 w-full sm:w-auto"
               >
                 Explore Solutions
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -209,7 +212,7 @@ export default function HeroBlock({ block }: HeroBlockProps) {
 
               <Link
                 href="/contact-us"
-                className="border-2 border-[#13589e] text-[#13589e] hover:bg-[#13589e]/5 px-6 py-3 rounded-md transition-all duration-300 flex items-center justify-center"
+                className="border-2 border-[#b4d23d] text-[#b4d23d] hover:bg-[#13589e]/5 px-6 py-3 rounded-md transition-all duration-300 flex items-center justify-center"
               >
                 Contact Us
               </Link>

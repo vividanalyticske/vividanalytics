@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import React from 'react'
 
 export default function DataVisual() {
@@ -10,34 +11,16 @@ export default function DataVisual() {
 
         {/* Dashboard visual elements */}
         <div className="absolute inset-0 p-6 flex flex-col">
-          <div className="h-2 w-1/3 bg-[#13589e]/20 rounded-full mb-4"></div>
-
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100">
-              <div className="h-2 w-16 bg-[#13589e]/20 rounded-full mb-2"></div>
-              <div className="h-8 w-full bg-[#b4d23d]/20 rounded-md"></div>
-            </div>
-            <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100">
-              <div className="h-2 w-12 bg-[#13589e]/20 rounded-full mb-2"></div>
-              <div className="h-8 w-full bg-[#13589e]/10 rounded-md"></div>
-            </div>
-          </div>
-
           <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100 flex-grow mb-4">
-            <div className="h-2 w-24 bg-[#13589e]/20 rounded-full mb-4"></div>
-            <div className="flex items-end h-32 gap-2 pt-4">
-              <div className="h-[30%] w-1/12 bg-[#13589e]/40 rounded-t-md"></div>
-              <div className="h-[70%] w-1/12 bg-[#13589e]/50 rounded-t-md"></div>
-              <div className="h-[50%] w-1/12 bg-[#13589e]/60 rounded-t-md"></div>
-              <div className="h-[90%] w-1/12 bg-[#b4d23d]/60 rounded-t-md"></div>
-              <div className="h-[60%] w-1/12 bg-[#13589e]/70 rounded-t-md"></div>
-              <div className="h-[80%] w-1/12 bg-[#b4d23d]/70 rounded-t-md"></div>
-              <div className="h-[40%] w-1/12 bg-[#13589e]/80 rounded-t-md"></div>
-              <div className="h-[75%] w-1/12 bg-[#b4d23d]/80 rounded-t-md"></div>
-              <div className="h-[60%] w-1/12 bg-[#13589e]/90 rounded-t-md"></div>
-              <div className="h-[85%] w-1/12 bg-[#b4d23d]/90 rounded-t-md"></div>
-              <div className="h-[45%] w-1/12 bg-[#13589e] rounded-t-md"></div>
-              <div className="h-[95%] w-1/12 bg-[#b4d23d] rounded-t-md"></div>
+            <div className="h-2 w-24 bg-[#13589e] rounded-full mb-4"></div>
+            <div>
+              <Image
+                src="/bg.jpg"
+                width={800}
+                height={800}
+                alt="hero background"
+                className="rounded-lg"
+              />
             </div>
           </div>
 
