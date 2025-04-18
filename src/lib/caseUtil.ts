@@ -1,11 +1,11 @@
 import config from '@/payload.config'
 import { getPayload } from 'payload'
 
-export async function fetchAllPosts(page = 1, limit = 9) {
+export async function fetchAllCases(page = 1, limit = 9) {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const res = await payload.find({
-    collection: 'blog',
+    collection: 'casestudies',
     depth: 2,
     limit,
     page,
@@ -27,21 +27,4 @@ export async function fetchAllPosts(page = 1, limit = 9) {
       page: res.page,
     },
   }
-}
-
-export async function fetchRelatedPosts(currentSlug: string) {
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { docs: allBlogs } = await payload.find({
-    collection: 'blog',
-    depth: 1,
-    limit: 4,
-    where: {
-      slug: {
-        not_equals: currentSlug,
-      },
-    },
-  })
-
-  return allBlogs
 }

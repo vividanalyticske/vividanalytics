@@ -18,6 +18,8 @@ import PracticeAreas from './collections/PracticeAreas'
 import Team from './collections/Team'
 import Newsletter from './collections/Newsletter'
 import Blog from './collections/Blog'
+import CaseStudy from './collections/Casestudies'
+import Resources from './collections/Resources'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -29,7 +31,18 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Blog, Pages, Solution, PracticeAreas, Team, Newsletter],
+  collections: [
+    Users,
+    Media,
+    Blog,
+    Pages,
+    Solution,
+    PracticeAreas,
+    Team,
+    Newsletter,
+    CaseStudy,
+    Resources,
+  ],
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
   // serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),

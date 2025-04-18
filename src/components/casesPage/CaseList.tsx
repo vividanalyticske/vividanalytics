@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function BlogList({ post }: { post: any }) {
+export default async function CaseList({ post }: { post: any }) {
   return (
     <div className="flex flex-col border-2 border-[#13589e] rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full">
       <div className="relative h-48 w-full">
@@ -30,7 +30,7 @@ export default async function BlogList({ post }: { post: any }) {
           </div>
 
           <h3 className="text-lg font-bold mb-3 hover:text-[#13589e] transition-colors">
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            <Link href={`/insights/case-studies/${post.slug}`}>{post.title}</Link>
           </h3>
 
           <div className="mb-4">
