@@ -58,7 +58,7 @@ const Navbar = () => {
           {/* Logo and Brand */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
-              <Image src="/officialLogo.png" alt="Logo" width={120} height={120} className="mr-2" />
+              <Image src="/officialLogo.png" alt="Logo" width={100} height={100} className="mr-2" />
             </Link>
           </div>
 
@@ -150,7 +150,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg absolute left-0 right-0 max-h-[80vh] overflow-y-auto">
+        <div className="md:hidden bg-white border-t mt-2.5 border-gray-200 shadow-lg absolute left-0 right-0 max-h-[80vh] overflow-y-auto">
           <div className="px-4 pt-2 pb-4 space-y-2">
             <Link
               href="/"
