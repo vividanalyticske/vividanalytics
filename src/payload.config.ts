@@ -43,8 +43,8 @@ export default buildConfig({
     CaseStudy,
     Resources,
   ],
-  serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
-  // serverURL: 'http://localhost:3000',
+  // serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
+  serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
 
