@@ -4,10 +4,67 @@ import { getPayload } from 'payload'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import { formatDistanceToNow } from 'date-fns'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import NewsletterBox from '@/components/blogPage/NewsletterBox'
 import { fetchAllCases } from '@/lib/caseUtil'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+
+  const { docs } = await payload.find({
+    collection: 'casestudies',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    depth: 2,
+  })
+
+  const post = docs[0]
+
+  if (!post) {
+    return {
+      title: 'Case Study Not Found – Vivid Analytics',
+      description:
+        'The case study you are looking for could not be found. Explore more examples of real-world data impact and strategic innovation from Vivid Analytics.',
+    }
+  }
+
+  const postTitle = post.title || 'Case Study – Vivid Analytics'
+  const postExcerpt =
+    post.content ||
+    'See how Vivid Analytics turns data into real-world impact. Explore strategies, outcomes, and lessons from our client case studies.'
+
+  return {
+    title: `${postTitle} – Vivid Analytics`,
+    description: postExcerpt,
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
+    openGraph: {
+      title: `${postTitle} – Vivid Analytics`,
+      description: postExcerpt,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/case-studies/${slug}`,
+      images: [
+        {
+          url:
+            post.coverImage && typeof post.coverImage === 'object' && post.coverImage.url
+              ? post.coverImage.url
+              : '/officialLogo.png', // Fallback to official branding
+          width: 1200,
+          height: 630,
+          alt: post.title || 'Vivid Analytics Case Study',
+        },
+      ],
+      type: 'article',
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/case-studies/${slug}`,
+    },
+  }
+}
 
 export default async function PublicationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -38,7 +95,6 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
   })
 
   // Get how long ago the post was published
-  const timeAgo = formatDistanceToNow(publishedDate, { addSuffix: true })
 
   return (
     <div className="bg-white min-h-screen">

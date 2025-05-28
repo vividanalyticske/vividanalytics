@@ -16,6 +16,64 @@ import { fetchAllMembers, fetchRelatedMembers } from '@/lib/ourTeamUtils'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+
+  const { docs } = await payload.find({
+    collection: 'team',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    depth: 2,
+  })
+
+  const profile = docs[0]
+
+  if (!profile) {
+    return {
+      title: 'Team Member Not Found – Vivid Analytics',
+      description:
+        'The team member you are looking for could not be found. Meet the experts behind Vivid Analytics and explore their roles in driving data strategy and innovation.',
+    }
+  }
+
+  const memberName = profile.name || 'Team Member – Vivid Analytics'
+  const memberBio =
+    profile.bio ||
+    'Meet a key expert from Vivid Analytics. Learn how their skills and vision contribute to transforming data into strategic action.'
+
+  return {
+    title: `${memberName} – Vivid Analytics`,
+    description: memberBio,
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
+    openGraph: {
+      title: `${memberName} – Vivid Analytics`,
+      description: memberBio,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/team/${slug}`,
+      images: [
+        {
+          url:
+            profile.photo && typeof profile.photo === 'object' && profile.photo.url
+              ? profile.photo.url
+              : '/officialLogo.png',
+          width: 1200,
+          height: 630,
+          alt: profile.name || 'Vivid Analytics Team',
+        },
+      ],
+      type: 'profile',
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/team/${slug}`,
+    },
+  }
+}
+
 export default async function TeamDescription({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const payloadConfig = await config

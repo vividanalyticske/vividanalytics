@@ -1,0 +1,22 @@
+# *
+User-agent: *
+Allow: /
+Allow: /about-us/
+Allow: /contact-us
+Allow: /blog/
+Allow: /our-solutions
+Allow: /insights/case-studies/
+Allow: /insights/resources/
+Allow: /team/
+
+# *
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /__next/
+
+# Host
+Host: https://vividanalytics.co
+
+# Sitemaps
+Sitemap: https://www.vividanalytics.co

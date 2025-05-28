@@ -4,6 +4,33 @@ import BlogList from '@/components/blogPage/BlogList'
 import PaginationComponent from '@/components/navigation/PaginationComponent'
 import { fetchAllPosts } from '@/lib/postsUtil'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Insights Blog | Vivid Analytics – Data, Strategy & Sustainability',
+  description:
+    'Explore expert insights from Vivid Analytics. Stay informed on data strategy, climate-conscious innovation, and evidence-based decision-making that drives real-world impact.',
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/blog`),
+  openGraph: {
+    title: 'Vivid Analytics Blog | Insights on Data, Strategy & Impact',
+    description:
+      'Read the latest articles from Vivid Analytics on turning data into action. Discover trends, tips, and thought leadership in analytics, strategy, and sustainability.',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
+    images: [
+      {
+        url: '/officialLogo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Vivid Analytics Blog',
+      },
+    ],
+    type: 'website',
+  },
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
+  },
+}
+
 type Props = {
   searchParams?: Promise<{
     page?: string

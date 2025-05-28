@@ -6,6 +6,32 @@ import ContactSocials from '@/components/contactPage/ContactSocials'
 import MapArea from '@/components/contactPage/MapArea'
 
 import config from '@/payload.config'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact Us | Vivid Analytics - Let’s Talk Data & Strategy',
+  description:
+    'Get in touch with Vivid Analytics. Whether you’re looking to explore data-driven opportunities, build resilient strategies, or drive climate-conscious impact-we’re here to help.',
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/contact-us`),
+  openGraph: {
+    title: 'Connect with Vivid Analytics | Strategic Insight Starts Here',
+    description:
+      'Reach out to Vivid Analytics to discuss how we can help transform your data into actionable strategy. We’re ready to support your mission with evidence-based solutions.',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/contact-us`,
+    images: [
+      {
+        url: '/officialLogo.png', // Suggest replacing with a branded, professional image
+        width: 1200,
+        height: 630,
+        alt: 'Contact Vivid Analytics',
+      },
+    ],
+    type: 'website',
+  },
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/contact-us`,
+  },
+}
 
 export default async function ContactPage() {
   const payloadConfig = await config

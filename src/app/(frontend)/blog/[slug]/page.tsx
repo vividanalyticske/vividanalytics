@@ -4,10 +4,67 @@ import { getPayload } from 'payload'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import { formatDistanceToNow } from 'date-fns'
 import { fetchAllPosts, fetchRelatedPosts } from '@/lib/postsUtil'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import NewsletterBox from '@/components/blogPage/NewsletterBox'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+
+  const { docs } = await payload.find({
+    collection: 'blog',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    depth: 2,
+  })
+
+  const post = docs[0]
+
+  if (!post) {
+    return {
+      title: 'Insight Not Found – Vivid Analytics',
+      description:
+        'The insight you are looking for could not be found. Explore more perspectives on data strategy, innovation, and sustainability from Vivid Analytics.',
+    }
+  }
+
+  const postTitle = post.title || 'Insight – Vivid Analytics'
+  const postExcerpt =
+    post.content ||
+    'Explore data-driven insights, strategic thinking, and climate-conscious innovation with Vivid Analytics.'
+
+  return {
+    title: `${postTitle} – Vivid Analytics`,
+    description: postExcerpt,
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
+    openGraph: {
+      title: `${postTitle} – Vivid Analytics`,
+      description: postExcerpt,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`,
+      images: [
+        {
+          url:
+            post.coverImage && typeof post.coverImage === 'object' && post.coverImage.url
+              ? post.coverImage.url
+              : '/bg.jpg', // Recommended: Branded fallback blog image
+          width: 1200,
+          height: 630,
+          alt: post.title || 'Vivid Analytics Blog',
+        },
+      ],
+      type: 'article',
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`,
+    },
+  }
+}
 
 export default async function PublicationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -36,9 +93,6 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
     month: 'long',
     day: 'numeric',
   })
-
-  // Get how long ago the post was published
-  const timeAgo = formatDistanceToNow(publishedDate, { addSuffix: true })
 
   // Fetch related posts
   const data = await fetchRelatedPosts(slug)
