@@ -7,6 +7,9 @@ export const PracticeAreas: CollectionConfig = {
     description: 'Add Practice Area',
     group: 'Practice Areas',
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',

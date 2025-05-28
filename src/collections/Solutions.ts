@@ -7,6 +7,9 @@ export const Solution: CollectionConfig = {
     description: 'Add Solution',
     group: 'Solution',
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',
