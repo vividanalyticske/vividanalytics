@@ -129,7 +129,7 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
           <div className="container mx-auto px-4 py-8">
             <div className="flex items-center mb-2">
               <span className="bg-[#b4d23d] text-white px-3 py-1 rounded-full text-sm font-medium">
-                Blog
+                Thought Leadership
               </span>
               <span className="ml-4 text-white/90 text-sm">{publishedDateFormatted}</span>
             </div>
