@@ -117,7 +117,7 @@ const Navbar = () => {
                   </Link>
                   <Link href="/blog" className="block w-full">
                     <DropdownMenuItem className="cursor-pointer text-[#13589e] hover:text-[#b4d23d] hover:bg-gray-50">
-                      <span>Blog</span>
+                      <span>Thought Leadership</span>
                       <DropdownMenuShortcut>
                         <PenLine size={18} />
                       </DropdownMenuShortcut>
@@ -218,7 +218,7 @@ const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <PenLine size={16} className="mr-3" />
-                    Blog
+                    Thought Leadership
                   </Link>
                 </div>
               )}

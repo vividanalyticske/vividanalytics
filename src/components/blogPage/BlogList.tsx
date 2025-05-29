@@ -43,7 +43,7 @@ export default async function BlogList({ post }: { post: any }) {
 
         <div className="mt-auto pt-3 border-t border-gray-100">
           <Link
-            href={`/blog/${post.slug}`}
+            href={`/thought-leadership/${post.slug}`}
             className="text-[#13589e] font-medium text-sm flex items-center hover:text-[#0c4780]"
           >
             Read more <ArrowRight size={14} className="ml-1" />
