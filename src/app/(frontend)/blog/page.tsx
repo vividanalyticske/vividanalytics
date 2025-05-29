@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import React from 'react'
 import BlogHero from '@/components/blogPage/BlogHero'
 import BlogList from '@/components/blogPage/BlogList'

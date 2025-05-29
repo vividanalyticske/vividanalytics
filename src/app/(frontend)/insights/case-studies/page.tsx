@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import React from 'react'
 import CaseHero from '@/components/casesPage/CaseHero'
 import CaseList from '@/components/casesPage/CaseList'

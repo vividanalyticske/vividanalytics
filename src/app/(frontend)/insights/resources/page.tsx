@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import React from 'react'
 import ResourceHero from '@/components/resourcePage/ResourceHero'
 import ResourceList from '@/components/resourcePage/ResourceList'

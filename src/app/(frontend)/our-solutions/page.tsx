@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { getPayload } from 'payload'
 import React from 'react'
 import SolutionHero from '@/components/solutionpage/SolutionHero'
