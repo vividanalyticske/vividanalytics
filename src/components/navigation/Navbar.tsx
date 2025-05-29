@@ -115,7 +115,7 @@ const Navbar = () => {
                       </DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </Link>
-                  <Link href="/blog" className="block w-full">
+                  <Link href="/thought-leadership" className="block w-full">
                     <DropdownMenuItem className="cursor-pointer text-[#13589e] hover:text-[#b4d23d] hover:bg-gray-50">
                       <span>Thought Leadership</span>
                       <DropdownMenuShortcut>
@@ -213,7 +213,7 @@ const Navbar = () => {
                   </Link>
 
                   <Link
-                    href="/blog"
+                    href="/thought-leadership"
                     className="text-[#13589e] hover:bg-gray-100 px-4 py-3 rounded-md text-base flex items-center"
                     onClick={() => setIsOpen(false)}
                   >
