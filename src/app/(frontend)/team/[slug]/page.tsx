@@ -301,16 +301,6 @@ export default async function TeamDescription({ params }: { params: Promise<{ sl
                     </Link>
                   ))}
                 </div>
-
-                <div className="mt-8 text-center">
-                  <Link
-                    href="/team"
-                    className="inline-flex items-center justify-center gap-2 py-2 px-6 bg-[#13589e] hover:bg-[#0c4683] text-white rounded-full transition-colors duration-300"
-                  >
-                    View All Team Members
-                    <ChevronRight className="h-5 w-5" />
-                  </Link>
-                </div>
               </div>
             )}
           </div>
