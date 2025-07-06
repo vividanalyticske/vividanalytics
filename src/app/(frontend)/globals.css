@@ -120,9 +120,9 @@
   }
 }
 
-* {
+/* * {
   opacity: 0;
-}
+} */
 
 .iframe-wrapper iframe {
   width: 100%;
