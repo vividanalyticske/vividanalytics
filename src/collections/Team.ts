@@ -10,6 +10,9 @@ export const Team: CollectionConfig = {
   },
   access: {
     read: () => true,
+    delete: () => true,
+    create: () => true,
+    update: () => true,
   },
   fields: [
     {

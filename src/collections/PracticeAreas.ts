@@ -9,6 +9,9 @@ export const PracticeAreas: CollectionConfig = {
   },
   access: {
     read: () => true,
+    delete: () => true,
+    create: () => true,
+    update: () => true,
   },
   fields: [
     {

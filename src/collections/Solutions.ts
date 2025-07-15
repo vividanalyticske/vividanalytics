@@ -9,6 +9,9 @@ export const Solution: CollectionConfig = {
   },
   access: {
     read: () => true,
+    delete: () => true,
+    create: () => true,
+    update: () => true,
   },
   fields: [
     {
